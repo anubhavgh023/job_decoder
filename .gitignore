@@ -1,0 +1,44 @@
+# Node.js
+node_modules/
+npm-debug.log
+package-lock.json
+yarn-error.log
+yarn.lock
+.next/
+out/
+*.log
+
+# Build output
+dist/
+build/
+*.tsbuildinfo
+
+# Next.js specific
+.next/
+out/
+*.local
+
+# FastAPI
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+env/
+venv/
+.env
+.venv/
+*.sqlite3
+*.db
+*.egg-info/
+*.egg
+dist/
+build/
+*.log
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
