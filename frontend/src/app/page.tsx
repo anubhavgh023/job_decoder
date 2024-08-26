@@ -32,8 +32,9 @@ export default function Home() {
             </Link>
           </div>
         </div>
+
         {/* Dashboard Image */}
-        <div className="relative flex items-center justify-center text-center mb-8 sm:h-[48rem] w-full bg-dot-[#c1ff68]/[0.3] bg-dot-black/[0.1] p-8">
+        <div className="relative flex items-center justify-center text-center mb-8 sm:h-[48rem] w-full bg-dot-[#c1ff68]/[0.3] p-8">
           {/* Radial gradient to give a faded look */}
           <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
 
