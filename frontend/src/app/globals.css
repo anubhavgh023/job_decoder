@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 75 22% 4%; /* #0a0b07 */
+    --foreground: 80 20% 94%; /* #f1f3ed */
+    --card: 75 22% 6%; /* Slightly lighter for cards */
+    --card-foreground: 80 20% 94%; /* Same as foreground */
+    --popover: 75 22% 6%; /* Same as card */
+    --popover-foreground: 80 20% 94%; /* Same as foreground */
+    --primary: 85 100% 70%; /* #c1ff68 */
+    --primary-foreground: 75 22% 4%; /* Contrasts with background */
+    --secondary: 0 0% 15%; /* #272727 */
+    --secondary-foreground: 80 20% 94%; /* Contrasts with text */
+    --muted: 75 10% 25%; /* Muted color for subtle elements */
+    --muted-foreground: 80 10% 80%; /* For contrast on muted elements */
+    --accent: 169 40% 67%; /* #88ccc0 */
+    --accent-foreground: 75 22% 4%; /* Contrasts with background */
+    --destructive: 0 84.2% 60.2%; /* Red for destructive actions */
+    --destructive-foreground: 80 20% 94%; /* Contrasts with destructive */
+    --border: 0 0% 20%; /* Slightly lighter for borders */
+    --input: 75 22% 6%; /* Slightly lighter for input fields */
+    --ring: 85 100% 70%; /* Matches primary */
+    --radius: 0.5rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
+
+  .dark {
+    --background: 0 0% 10%; /* Darker background */
+    --foreground: 80 20% 94%; /* #f1f3ed */
+    --card: 0 0% 15%; /* Darker card */
+    --card-foreground: 80 20% 94%; /* Same as foreground */
+    --popover: 0 0% 15%; /* Same as card */
+    --popover-foreground: 80 20% 94%; /* Same as foreground */
+    --primary: 85 100% 70%; /* #c1ff68 */
+    --primary-foreground: 0 0% 10%; /* Contrasts with background */
+    --secondary: 0 0% 20%; /* Darker secondary */
+    --secondary-foreground: 80 20% 94%; /* Contrasts with text */
+    --muted: 0 0% 20%; /* Muted color for subtle elements */
+    --muted-foreground: 80 10% 80%; /* For contrast on muted elements */
+    --accent: 169 40% 67%; /* #88ccc0 */
+    --accent-foreground: 0 0% 10%; /* Contrasts with background */
+    --destructive: 0 62.8% 30.6%; /* Darker red for destructive actions */
+    --destructive-foreground: 80 20% 94%; /* Contrasts with destructive */
+    --border: 0 0% 20%; /* Slightly lighter for borders */
+    --input: 0 0% 15%; /* Darker input fields */
+    --ring: 85 100% 70%; /* Matches primary */
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
