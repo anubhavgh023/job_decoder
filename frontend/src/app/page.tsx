@@ -18,13 +18,13 @@ export default function Home() {
           <div className="flex flex-col gap-4 sm:flex-row justify-center items-center">
             <Link
               href="/search"
-              className="bg-primary w-full sm:w-64 text-primary-foreground py-2 px-6 rounded-md hover:bg-foreground hover:text-background active:scale-95 transition-colors"
+              className="bg-primary w-full sm:w-56 text-primary-foreground py-2 px-6 rounded-md hover:bg-foreground hover:text-background active:scale-95 transition-colors"
             >
               Start Searching
             </Link>
             <Link
               href="/dashboard"
-              className="bg-transparent w-full sm:w-64 border border-primary text-primary py-2 px-6 rounded-md hover:bg-primary hover:text-primary-foreground 
+              className="bg-transparent w-full sm:w-56 border border-primary text-primary py-2 px-6 rounded-md hover:bg-foreground hover:border-background hover:text-primary-foreground 
               active:scale-95
               transition-colors"
             >
