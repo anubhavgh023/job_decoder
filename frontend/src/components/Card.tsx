@@ -8,7 +8,7 @@ export default function Card({ company }: CardProps) {
   return (
     <div className="bg-secondary p-6 rounded-lg w-80">
       <a href={company.website} target="_blank">
-        <h2 className="text-2xl font-bold text-foreground mb-2">
+        <h2 className="text-2xl font-bold text-foreground mb-2 hover:text-accent transition-colors">
           {company.company_name}
         </h2>
       </a>
@@ -24,7 +24,7 @@ export default function Card({ company }: CardProps) {
               <a
                 href={job.job_url}
                 target="_blank"
-                className="text-primary font-medium hover:text-foreground transition-colors duration-200"
+                className="text-primary font-medium hover:opacity-50 transition-colors duration-200"
               >
                 {job.job_title}
               </a>
