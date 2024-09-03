@@ -46,7 +46,9 @@ export default function Search() {
             className="border-none py-2 p-2 rounded-sm bg-secondary font-medium outline-none focus:ring focus:ring-gray-500 sm:pr-20"
             onChange={(e) => setQuery(e.target.value)}
           ></input>
-          <span className="absolute right-4 top-3 border text-xs text-gray-500 font-semibold">Ctrl + K</span>
+          <span className="absolute right-4 top-3 border text-xs text-gray-500 font-semibold">
+            Ctrl + K
+          </span>
         </div>
 
         <button
@@ -58,13 +60,15 @@ export default function Search() {
       </div>
 
       {/* show results */}
-      <div className="border rounded-md border-secondary p-10 mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="rounded-md w-full max-w-5xl p-10 mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 bg-[#171717]">
         {results.length > 0 ? (
           results.map((company) => (
             <Card key={company.company_id} company={company}></Card>
           ))
         ) : (
-          <p>No Result found</p>
+          <div className="flex justify-center items-center w-full col-span-full p-10 text-gray-400 font-medium opacity-40 text-center">
+            Start Searching...
+          </div>
         )}
       </div>
     </main>
