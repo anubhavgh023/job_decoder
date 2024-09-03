@@ -32,8 +32,6 @@ def db_connect():
 
 @app.get("/search/")
 async def search(keyword: Annotated[str, Query()] = ...):
-    print(keyword)
-
     # query keyword
     try:
         # connect to db
@@ -100,3 +98,61 @@ async def search(keyword: Annotated[str, Query()] = ...):
     response_data = {"data": list(company_data.values())}
 
     return response_data
+
+def get_job_density_by_country() -> list[dict[str, str]]:
+    conn = db_connect()
+    cursor = conn.cursor()
+    query = """
+    SELECT country, COUNT(*) as job_count
+    FROM company
+    JOIN jobs ON company.company_id = jobs.company_id
+    GROUP BY country;
+    """
+    cursor.execute(query)
+    results = cursor.fetchall()
+    conn.close()
+
+    return [{"country": row[0], "job_count": row[1]} for row in results]
+
+
+def top_skills_in_demand() -> dict[str, list[dict[str, int]]]:
+    conn = db_connect()
+    cursor = conn.cursor()
+
+    # Query to get top 3 languages
+    lang_query = """
+    SELECT l.language, COUNT(s.language_id) as lang_count
+    FROM skillset s
+    JOIN languages l ON s.language_id = l.language_id
+    GROUP BY s.language_id
+    ORDER BY lang_count DESC
+    LIMIT 5;
+    """
+    cursor.execute(lang_query)
+    lang_results = cursor.fetchall()
+
+    # Query to get top 3 tools
+    tool_query = """
+    SELECT t.tool, COUNT(s.tool_id) as tool_count
+    FROM skillset s
+    JOIN tools t ON s.tool_id = t.tool_id
+    GROUP BY s.tool_id
+    ORDER BY tool_count DESC
+    LIMIT 5;
+    """
+    cursor.execute(tool_query)
+    tool_results = cursor.fetchall()
+
+    conn.close()
+
+    return {
+        "languages": [{"language": row[0], "count": row[1]} for row in lang_results],
+        "tools": [{"tool": row[0], "count": row[1]} for row in tool_results],
+    }    
+    
+    
+@app.get("/dashboard")
+async def dashboard():
+    job_density = get_job_density_by_country()
+    skills_in_demand = top_skills_in_demand()
+    return {"data": job_density, "top_skills": skills_in_demand}
