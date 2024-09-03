@@ -6,7 +6,7 @@ type CardProps = {
 
 export default function Card({ company }: CardProps) {
   return (
-    <div className="bg-secondary p-6 rounded-lg w-80">
+    <div className="bg-secondary p-6 rounded-lg">
       <a href={company.website} target="_blank">
         <h2 className="text-2xl font-bold text-foreground mb-2 hover:text-accent transition-colors">
           {company.company_name}
