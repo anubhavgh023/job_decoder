@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Card from "@/components/Card";
-import { Company } from "@/types/company";
+import { Company } from "@/types/types";
 
 export default function Search() {
   const [query, setQuery] = useState<string>("");

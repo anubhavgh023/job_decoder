@@ -1,4 +1,4 @@
-import { Company } from "@/types/company";
+import { Company } from "@/types/types";
 
 type CardProps = {
   company: Company;
