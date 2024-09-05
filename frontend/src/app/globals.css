@@ -40,7 +40,6 @@
     --popover-foreground: 80 20% 94%; /* Same as foreground */
     --primary: 85 100% 70%; /* #c1ff68 */
     --primary-foreground: 0 0% 10%; /* Contrasts with background */
-    --secondary: 0 0% 20%; /* Darker secondary */
     --secondary-foreground: 80 20% 94%; /* Contrasts with text */
     --muted: 0 0% 20%; /* Muted color for subtle elements */
     --muted-foreground: 80 10% 80%; /* For contrast on muted elements */
@@ -48,14 +47,8 @@
     --accent-foreground: 0 0% 10%; /* Contrasts with background */
     --destructive: 0 62.8% 30.6%; /* Darker red for destructive actions */
     --destructive-foreground: 80 20% 94%; /* Contrasts with destructive */
-    --border: 0 0% 20%; /* Slightly lighter for borders */
     --input: 0 0% 15%; /* Darker input fields */
     --ring: 85 100% 70%; /* Matches primary */
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
   }
 }
 
