@@ -146,8 +146,8 @@ def top_skills_in_demand() -> dict[str, list[dict[str, int]]]:
     conn.close()
 
     return {
-        "languages": [{"language": row[0], "count": row[1]} for row in lang_results],
-        "tools": [{"tool": row[0], "count": row[1]} for row in tool_results],
+        "languages": [{"name": row[0], "count": row[1]} for row in lang_results],
+        "tools": [{"name": row[0], "count": row[1]} for row in tool_results],
     }    
     
     
@@ -155,4 +155,4 @@ def top_skills_in_demand() -> dict[str, list[dict[str, int]]]:
 async def dashboard():
     job_density = get_job_density_by_country()
     skills_in_demand = top_skills_in_demand()
-    return {"data": job_density, "top_skills": skills_in_demand}
+    return {"geo_data": job_density, "top_skills": skills_in_demand}
