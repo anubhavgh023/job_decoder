@@ -12,13 +12,13 @@ async function fetchDashboardData(): Promise<DashboardData> {
 }
 
 export default async function Dashboard() {
-  const { geo_data, top_skills } = await fetchDashboardData();
-  console.log(top_skills)
+  const { geo_data, top_skills, heatmap_data } = await fetchDashboardData();
+  console.log(top_skills);
 
   return (
     <main>
       {/* trends */}
-      <section className="grid grid-cols-5 gap-6 ml-10 mr-10">
+      <section className="flex flex-col md:grid md:grid-cols-5 gap-6 ml-4 mr-4">
         <SkillsDemandPieChart
           title={"Top Languages"}
           topSkills={top_skills.languages}
@@ -31,7 +31,7 @@ export default async function Dashboard() {
           <GeoMap data={geo_data} />
         </div>
         <div className="col-span-full rounded-md">
-          <HeatMapToolLanguage />
+          <HeatMapToolLanguage heatmapData={heatmap_data} />
         </div>
       </section>
 
