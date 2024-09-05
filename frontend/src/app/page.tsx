@@ -40,9 +40,9 @@ export default function Home() {
 
           <div className="relative bg-secondary p-2 rounded-md">
             <Image
-              src="/assets/dashboard-dark.png"
-              width={800}
-              height={800}
+              src="/assets/dashboard-dark.svg"
+              width={1024}
+              height={1024}
               alt="dashboard preview image"
             ></Image>
           </div>
