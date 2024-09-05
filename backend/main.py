@@ -119,7 +119,7 @@ def top_skills_in_demand() -> dict[str, list[dict[str, int]]]:
     conn = db_connect()
     cursor = conn.cursor()
 
-    # Query to get top 3 languages
+    # Query to get top 5 languages
     lang_query = """
     SELECT l.language, COUNT(s.language_id) as lang_count
     FROM skillset s
@@ -131,7 +131,7 @@ def top_skills_in_demand() -> dict[str, list[dict[str, int]]]:
     cursor.execute(lang_query)
     lang_results = cursor.fetchall()
 
-    # Query to get top 3 tools
+    # Query to get top 5 tools
     tool_query = """
     SELECT t.tool, COUNT(s.tool_id) as tool_count
     FROM skillset s
@@ -149,10 +149,34 @@ def top_skills_in_demand() -> dict[str, list[dict[str, int]]]:
         "languages": [{"name": row[0], "count": row[1]} for row in lang_results],
         "tools": [{"name": row[0], "count": row[1]} for row in tool_results],
     }    
+
+def heatMap_lang_tool():
+    conn = sqlite3.connect("db/ycombinator.db")
+    cursor = conn.cursor()
+    # Fetch language-tool combinations with their count
+    cursor.execute("""
+        SELECT l.language, t.tool, COUNT(s.skillset_id) as count
+        FROM skillset s
+        JOIN languages l ON s.language_id = l.language_id
+        JOIN tools t ON s.tool_id = t.tool_id
+        GROUP BY l.language_id, t.tool_id
+        ORDER BY count DESC
+    """)
+    heatmap_data = cursor.fetchall()
+
+    conn.close()
+
+    # Convert to dict format for easier consumption by the frontend
+    return [{"language": row[0], "tool": row[1], "count": row[2]} for row in heatmap_data]
     
     
 @app.get("/dashboard")
 async def dashboard():
     job_density = get_job_density_by_country()
     skills_in_demand = top_skills_in_demand()
-    return {"geo_data": job_density, "top_skills": skills_in_demand}
+    heatmap_data = heatMap_lang_tool()
+    return {
+        "geo_data": job_density, 
+        "top_skills": skills_in_demand,
+        "heatmap_data": heatmap_data
+        }
