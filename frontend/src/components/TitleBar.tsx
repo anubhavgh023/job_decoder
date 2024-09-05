@@ -7,7 +7,7 @@ export default function TitleBar() {
       <nav className="flex justify-between items-center">
         <Link
           href="/"
-          className="text-base rounded-md bg-secondary py-2 px-3 font-bold text-primary transition-colors hover:text-accent"
+          className="text-base rounded-md bg-secondary py-2 px-3 font-bold text-primary transition-colors hover:text-foreground"
         >
           Job Decoder
         </Link>
