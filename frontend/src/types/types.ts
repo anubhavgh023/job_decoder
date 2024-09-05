@@ -22,12 +22,19 @@ export type Skill = {
     count: number;
 };
 
+export type HeatmapData = {
+    language: string;
+    tool: string;
+    count: number
+}
+
 export type DashboardData = {
     geo_data: JobDensityData[];
     top_skills: {
         languages: Skill[];
         tools: Skill[];
     };
+    heatmap_data: HeatmapData[];
 }
 
 // Define type for component props
