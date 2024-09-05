@@ -1,30 +1,44 @@
-"use client";
-
 import GeoMap from "@/components/GeoMap";
 import HeatMapToolLanguage from "@/components/HeadMapToolLanguage";
 import SkillsBarGraph from "@/components/SkillsBarGraph";
-import ToolsDemand from "@/components/SkillsDemandPieChart";
 import SkillsDemandPieChart from "@/components/SkillsDemandPieChart";
+import { DashboardData } from "@/types/types";
 
-export default function Dashboard() {
+async function fetchDashboardData(): Promise<DashboardData> {
+  const res = await fetch("http://localhost:8000/dashboard", {
+    cache: "no-store",
+  });
+  return res.json();
+}
+
+export default async function Dashboard() {
+  const { geo_data, top_skills } = await fetchDashboardData();
+  console.log(top_skills)
+
   return (
     <main>
       {/* trends */}
       <section className="grid grid-cols-5 gap-6 ml-10 mr-10">
-        <SkillsDemandPieChart title={"Top Langugages"}></SkillsDemandPieChart>
-        <SkillsDemandPieChart title={"Top Tools"}></SkillsDemandPieChart>
+        <SkillsDemandPieChart
+          title={"Top Languages"}
+          topSkills={top_skills.languages}
+        />
+        <SkillsDemandPieChart
+          title={"Top Tools"}
+          topSkills={top_skills.tools}
+        />
         <div className="col-span-3 border border-secondary rounded-md">
-          <GeoMap></GeoMap>
+          <GeoMap data={geo_data} />
         </div>
         <div className="col-span-full rounded-md">
-          <HeatMapToolLanguage></HeatMapToolLanguage>
+          <HeatMapToolLanguage />
         </div>
       </section>
 
       {/* bar graphs */}
       <section>
-        <SkillsBarGraph></SkillsBarGraph>
-        <SkillsBarGraph></SkillsBarGraph>
+        <SkillsBarGraph />
+        <SkillsBarGraph />
       </section>
     </main>
   );
