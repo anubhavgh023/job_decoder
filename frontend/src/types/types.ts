@@ -28,6 +28,11 @@ export type HeatmapData = {
     count: number
 }
 
+export type BarGraphData = {
+    languages: Skill[];
+    tools: Skill[];
+}
+
 export type DashboardData = {
     geo_data: JobDensityData[];
     top_skills: {
@@ -35,6 +40,7 @@ export type DashboardData = {
         tools: Skill[];
     };
     heatmap_data: HeatmapData[];
+    barGraph_data: BarGraphData;
 }
 
 // Define type for component props
