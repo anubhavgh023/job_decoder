@@ -100,7 +100,7 @@ export default function SkillsDemandBarGraph({
       <h2 className="text-2xl font-semibold text-foreground text-center mb-4">
         {title}
       </h2>
-      <div className="w-full overflow-y-auto" style={{ maxHeight: '500px' }}>
+      <div className="w-full" style={{ maxHeight: '500px' }}>
         {/* This will make the graph scrollable vertically if there are too many bars */}
         <div style={{ height: chartHeight }}>
           <Bar options={options as any} data={barChartData} />
