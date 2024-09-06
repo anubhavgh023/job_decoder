@@ -23,9 +23,9 @@ export default function SkillsDemandBarGraph({
   // Function to generate dynamic monochromatic colors with transparency
   const generateColors = (numBars: number) => {
     const colors = [];
-    const primaryHue = 85; // Hue for your primary color (#c1ff68)
-    const primarySaturation = 100; // Saturation for the green color
-    const transparency = 0.65; // Set transparency level (between 0 and 1)
+    const primaryHue = 85; 
+    const primarySaturation = 100; 
+    const transparency = 0.65; 
 
     for (let i = 0; i < numBars; i++) {
       // Vary the lightness between 30% and 70% for a range of shades
@@ -72,7 +72,7 @@ export default function SkillsDemandBarGraph({
       },
     },
     responsive: true,
-    maintainAspectRatio: false,
+    maintainAspectRatio: false, // Disable automatic aspect ratio
   };
 
   // Bar chart data
@@ -84,21 +84,27 @@ export default function SkillsDemandBarGraph({
         data: count,
         backgroundColor: backgroundColors, // Dynamically generated colors
         borderRadius: 4, // Rounded corners for bars
-        barThickness: 30, // Adjust the thickness of the bars
+        barThickness: 20, // Adjust the thickness of the bars
         maxBarThickness: 40,
         minBarLength:10,
       },
     ],
   };
 
+  // Set height of each bar and total height dynamically
+  const barHeight = 30; // Height for each bar
+  const chartHeight = skills.length * barHeight; // Total height based on number of bars
+
   return (
     <div className="bg-secondary flex flex-col justify-center items-center gap-2 p-4 rounded-md">
       <h2 className="text-2xl font-semibold text-foreground text-center mb-4">
         {title}
       </h2>
-      <div className="w-full h-screen">
+      <div className="w-full overflow-y-auto" style={{ maxHeight: '500px' }}>
         {/* This will make the graph scrollable vertically if there are too many bars */}
-        <Bar options={options as any} data={barChartData} />
+        <div style={{ height: chartHeight }}>
+          <Bar options={options as any} data={barChartData} />
+        </div>
       </div>
     </div>
   );
