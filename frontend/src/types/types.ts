@@ -33,6 +33,11 @@ export type BarGraphData = {
     tools: Skill[];
 }
 
+export type LineGraphData = {
+    labels: string[];
+    data: number[];
+};
+
 export type DashboardData = {
     geo_data: JobDensityData[];
     top_skills: {
@@ -41,6 +46,7 @@ export type DashboardData = {
     };
     heatmap_data: HeatmapData[];
     barGraph_data: BarGraphData;
+    line_graph_data: LineGraphData;
 }
 
 // Define type for component props
