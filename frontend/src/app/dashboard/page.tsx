@@ -1,5 +1,5 @@
 import GeoMap from "@/components/GeoMap";
-import HeatMapToolLanguage from "@/components/HeadMapToolLanguage";
+import HeatMapToolLanguage from "@/components/HeatMapToolLanguage";
 import SkillsBarGraph from "@/components/SkillsBarGraph";
 import SkillsDemandPieChart from "@/components/SkillsDemandPieChart";
 import { DashboardData } from "@/types/types";
@@ -12,13 +12,13 @@ async function fetchDashboardData(): Promise<DashboardData> {
 }
 
 export default async function Dashboard() {
-  const { geo_data, top_skills, heatmap_data } = await fetchDashboardData();
-  console.log(top_skills);
+  const { geo_data, top_skills, heatmap_data, barGraph_data } =
+    await fetchDashboardData();
 
   return (
-    <main>
+    <main className="ml-8 mr-8">
       {/* trends */}
-      <section className="flex flex-col md:grid md:grid-cols-5 gap-6 ml-4 mr-4">
+      <section className="flex flex-col md:grid md: grid-cols-2 lg:grid-cols-5 gap-6">
         <SkillsDemandPieChart
           title={"Top Languages"}
           topSkills={top_skills.languages}
@@ -36,9 +36,17 @@ export default async function Dashboard() {
       </section>
 
       {/* bar graphs */}
-      <section>
-        <SkillsBarGraph />
-        <SkillsBarGraph />
+      <section className="mt-12">
+        <div className="flex flex-col gap-4">
+          <div className="overflow-y-auto h-[400px]">
+            {/* Languages */}
+            <SkillsBarGraph title={"Languages"} skills={barGraph_data.languages} />
+          </div>
+          <div className="overflow-y-auto h-[400px]">
+            {/* Tools */}
+            <SkillsBarGraph title={"Tools"} skills={barGraph_data.tools} />
+          </div>
+        </div>
       </section>
     </main>
   );
