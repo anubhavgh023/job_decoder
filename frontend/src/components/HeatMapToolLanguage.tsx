@@ -42,7 +42,7 @@ const HeatMapToolLanguage = ({ heatmapData }: HeatMapProps) => {
       <table className="table-auto border-collapse w-full">
         <thead>
           <tr>
-            <th className="border border-[#4d4d4d] bg-secondary px-2 py-2 text-[#c1ff58] opacity-75">
+            <th className="border border-[#4d4d4d] bg-secondary text-[#c1ff58] opacity-75">
               Language / Tool
             </th>
             {tools.map((tool) => (
@@ -66,7 +66,7 @@ const HeatMapToolLanguage = ({ heatmapData }: HeatMapProps) => {
                   key={tool}
                   className={`border px-4 py-2 text-center text-sm`}
                   style={{
-                    backgroundColor: `rgba(165, 250, 100, ${
+                    backgroundColor: `rgba(165, 250, 90, ${
                       matrix[lang][tool] / 4
                     }`,
                     color: matrix[lang][tool] > 5 ? "#f1f3ed" : "#333333", // Adjust text color
