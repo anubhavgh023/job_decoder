@@ -16,8 +16,6 @@ export default function SkillsDemandPieChart({
   const names = topSkills.map((skill) => skill.name);
   const count = topSkills.map((skill) => skill.count);
 
-  console.log(names, count);
-
   const options = {
     plugins: {
       legend: {
