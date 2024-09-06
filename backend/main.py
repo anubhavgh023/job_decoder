@@ -150,6 +150,37 @@ def top_skills_in_demand() -> dict[str, list[dict[str, int]]]:
         "tools": [{"name": row[0], "count": row[1]} for row in tool_results],
     }    
 
+def all_language_tool_demand():
+    conn = db_connect()  
+    cursor = conn.cursor()
+
+    # Query all language data:
+    lang_query = """
+    SELECT l.language, COUNT(s.language_id) as lang_count
+    FROM skillset s
+    JOIN languages l ON s.language_id = l.language_id
+    GROUP BY s.language_id
+    ORDER BY lang_count DESC;
+    """ 
+    lang_results = cursor.execute(lang_query).fetchall()
+    
+    # Query to get top 5 tools
+    tool_query = """
+    SELECT t.tool, COUNT(s.tool_id) as tool_count
+    FROM skillset s
+    JOIN tools t ON s.tool_id = t.tool_id
+    GROUP BY s.tool_id
+    ORDER BY tool_count DESC;
+    """
+    tool_results = cursor.execute(tool_query).fetchall()
+
+    return {
+        "languages": [{"name": row[0], "count": row[1]} for row in lang_results],
+        "tools": [{"name": row[0], "count": row[1]} for row in tool_results],
+    }    
+
+    
+
 def heatMap_lang_tool():
     conn = sqlite3.connect("db/ycombinator.db")
     cursor = conn.cursor()
@@ -175,8 +206,10 @@ async def dashboard():
     job_density = get_job_density_by_country()
     skills_in_demand = top_skills_in_demand()
     heatmap_data = heatMap_lang_tool()
+    barGraph_data = all_language_tool_demand()
     return {
         "geo_data": job_density, 
         "top_skills": skills_in_demand,
-        "heatmap_data": heatmap_data
+        "heatmap_data": heatmap_data,
+        "barGraph_data": barGraph_data
         }
