@@ -38,8 +38,8 @@ async def search(keyword: Annotated[str, Query()] = ...):
         conn = db_connect()
         cur = conn.cursor()
 
-        # perform search using FTS5 virtual table
-        search_query = keyword.replace(" ", " OR ")
+        # Replace commas with AND operator, to ensure all terms must appear
+        search_query = " AND ".join(keyword.split(","))
         query = """
             SELECT 
                 c.company_id,

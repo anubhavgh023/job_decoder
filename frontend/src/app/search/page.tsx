@@ -7,10 +7,13 @@ import { Company } from "@/types/types";
 export default function Search() {
   const [query, setQuery] = useState<string>("");
   const [results, setResults] = useState<Company[]>([]); // structure this obj
-
+  
   async function handleSearch() {
+    // Convert space-separated keywords to comma-separated 
+    const formattedQuery = query.split(" ").join(",");
+
     const res = await axios.get(
-      `http://localhost:8000/search/?keyword=${query}`
+      `http://localhost:8000/search/?keyword=${formattedQuery}`
     );
     const data = res.data;
     setResults(data.data);
