@@ -26,6 +26,17 @@ export default function TitleBar() {
               Start Search
             </Link>
           )}
+          {/* Conditionally render the Dashboard link */}
+          {pathname === "/search" && (
+            <Link
+              href="/dashboard"
+              className="bg-transparent border border-primary text-primary py-2 px-6 rounded-md hover:bg-foreground hover:border-background hover:text-primary-foreground 
+              active:scale-95
+              transition-colors"
+            >
+              Dashboard Analytics
+            </Link>
+          )}
         </div>
         <a href="https://github.com/anubhavgh023/job_decoder" target="_blank">
           <Image
