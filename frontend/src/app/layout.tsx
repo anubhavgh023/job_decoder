@@ -17,11 +17,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body className={inter.className}>
-        <TitleBar></TitleBar>
-        {children}
-        <Footer></Footer>
+    <html lang="en" className="dark h-full">
+      <body className={`${inter.className} flex flex-col min-h-screen`}>
+        {/* Main content should expand to fill available space */}
+        <TitleBar />
+        <main className="flex-grow">
+          {children}
+        </main>
+        {/* Footer will stick to the bottom */}
+        <Footer />
       </body>
     </html>
   );

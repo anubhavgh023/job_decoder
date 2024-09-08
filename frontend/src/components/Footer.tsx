@@ -3,8 +3,8 @@ import Image from "next/image";
 export default function Footer() {
   return (
     <footer className="bg-[#131313] text-white py-8 mt-24">
-      <div className="flex justify-between items-center ml-8 mr-8 mb-8">
-        <p className="text-sm text-[#f3fcdc]">© {new Date().getFullYear()}Job Decoder</p>
+      <div className="flex justify-between items-center ml-8 mr-8">
+        <p className="text-sm text-[#f3fcdc]">© {new Date().getFullYear()}JobDecoder</p>
         <div>
           <div className="flex gap-4">
             {/* github */}
