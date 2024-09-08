@@ -4,6 +4,7 @@ import JobsExperienceLineGraph from "@/components/JobExperienceLineGraph";
 import SkillsBarGraph from "@/components/SkillsBarGraph";
 import SkillsDemandPieChart from "@/components/SkillsDemandPieChart";
 import { DashboardData } from "@/types/types";
+import Link from "next/link";
 
 async function fetchDashboardData(): Promise<DashboardData> {
   const res = await fetch("http://localhost:8000/dashboard", {
@@ -13,7 +14,7 @@ async function fetchDashboardData(): Promise<DashboardData> {
 }
 
 export default async function Dashboard() {
-  const { geo_data, top_skills, heatmap_data, barGraph_data,line_graph_data } =
+  const { geo_data, top_skills, heatmap_data, barGraph_data, line_graph_data } =
     await fetchDashboardData();
 
   return (
@@ -60,6 +61,14 @@ export default async function Dashboard() {
           lineGraphData={line_graph_data}
         />
       </section>
+      <div className="flex justify-center items-center text-center mt-12">
+        <Link
+          href="/search"
+          className="bg-primary w-full sm:w-56 text-primary-foreground py-2 px-6 rounded-md hover:bg-foreground hover:text-background active:scale-95 transition-colors"
+        >
+          Start Job Search...
+        </Link>
+      </div>
     </main>
   );
 }
