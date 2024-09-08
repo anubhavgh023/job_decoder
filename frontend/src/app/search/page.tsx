@@ -62,7 +62,7 @@ export default function Search() {
       </div>
 
       {/* show results */}
-      <div className="rounded-md w-full max-w-5xl p-10 mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 bg-[#171717]">
+      <div className="rounded-md w-full max-w-5xl p-10 mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 bg-[#131313]">
         {results.length > 0 ? (
           results.map((company) => (
             <Card key={company.company_id} company={company}></Card>
