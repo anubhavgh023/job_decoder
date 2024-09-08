@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import Card from "@/components/Card";
 import { Company } from "@/types/types";
 
@@ -12,10 +11,10 @@ export default function Search() {
     // Convert space-separated keywords to comma-separated 
     const formattedQuery = query.split(" ").join(",");
 
-    const res = await axios.get(
+    const res = await fetch(
       `http://localhost:8000/search/?keyword=${formattedQuery}`
     );
-    const data = res.data;
+    const data = await res.json();
     setResults(data.data);
   }
 
