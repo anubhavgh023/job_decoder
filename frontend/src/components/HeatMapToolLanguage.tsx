@@ -69,7 +69,7 @@ const HeatMapToolLanguage = ({ heatmapData }: HeatMapProps) => {
                     backgroundColor: `rgba(165, 250, 90, ${
                       matrix[lang][tool] / 4
                     }`,
-                    color: matrix[lang][tool] > 5 ? "#f1f3ed" : "#333333", // Adjust text color
+                    color: "#333333", 
                   }}
                 >
                   {matrix[lang][tool]}

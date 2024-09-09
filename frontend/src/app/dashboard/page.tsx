@@ -33,7 +33,10 @@ export default async function Dashboard() {
           <GeoMap data={geo_data} />
         </div>
         <div className="col-span-full rounded-md">
-          <HeatMapToolLanguage heatmapData={heatmap_data} />
+          <div className="overflow-y-auto h-[600px]">
+            <HeatMapToolLanguage heatmapData={heatmap_data} />
+
+          </div>
         </div>
       </section>
 
