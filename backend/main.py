@@ -30,8 +30,17 @@ def db_connect():
         raise HTTPException(status_code=500, detail=f"Database connection error: {e}")
 
 
+@app.get("/")
+async def heathCheck():
+    return {"success": True}
+
+
 @app.get("/search/")
-async def search(keyword: Annotated[str, Query()] = ...):
+async def search(keyword: Annotated[str, Query()] =""):
+    # Check if keyword is empty
+    if not keyword:
+        return {"message": "No keyword provided, please enter a search term."}
+    
     # query keyword
     try:
         # connect to db
@@ -249,7 +258,8 @@ def jobs_experience_line_graph():
         "data": [
             row["job_count"]
             for row in sorted_line_graph_data
-            if row["job_count"] is not None  # Ensure we only include counts for non-None labels
+            if row["job_count"]
+            is not None  # Ensure we only include counts for non-None labels
         ],
     }
 
