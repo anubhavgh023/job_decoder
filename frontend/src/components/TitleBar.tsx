@@ -13,8 +13,15 @@ export default function TitleBar() {
         <div className="flex gap-4">
           <Link
             href="/"
-            className="text-base rounded-md bg-secondary py-2 px-3 font-bold text-primary transition-colors hover:text-foreground"
+            className="flex gap-2 text-base rounded-md bg-secondary py-2 px-3 font-bold text-primary transition-colors hover:text-foreground"
           >
+          <Image
+            src={"/icons/jobDecoder-icon.svg"}
+            width={24}
+            height={24}
+            alt="job decoder logo"
+            className="hover:scale-95"
+          />
             Job Decoder
           </Link>
           {/* Conditionally render the Start Search link */}
