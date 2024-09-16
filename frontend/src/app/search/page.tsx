@@ -12,7 +12,7 @@ export default function Search() {
     const formattedQuery = query.split(" ").join(",");
 
     const res = await fetch(
-      `http://backend:8000/search/?keyword=${formattedQuery}`
+      `https://jobdecoder.anubhavsamanta.tech/search/?keyword=${formattedQuery}`
     );
     const data = await res.json();
     setResults(data.data);
