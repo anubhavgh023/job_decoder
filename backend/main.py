@@ -35,7 +35,7 @@ async def heathCheck():
     return {"success": True}
 
 
-@app.get("/search/")
+@app.get("/search")
 async def search(keyword: Annotated[str, Query()] =""):
     # Check if keyword is empty
     if not keyword:
