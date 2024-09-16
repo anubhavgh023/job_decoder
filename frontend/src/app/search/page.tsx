@@ -3,18 +3,22 @@ import { useEffect, useState } from "react";
 import Card from "@/components/Card";
 import { Company } from "@/types/types";
 
+async function fetchSearchData(formattedQuery:string): Promise<any> {
+  const res = await fetch(
+    `http://backend:8000/search/?keyword=${formattedQuery}`
+  );
+  return res.json();
+}
+
 export default function Search() {
   const [query, setQuery] = useState<string>("");
   const [results, setResults] = useState<Company[]>([]); // structure this obj
-  
+
   async function handleSearch() {
-    // Convert space-separated keywords to comma-separated 
+    // Convert space-separated keywords to comma-separated
     const formattedQuery = query.split(" ").join(",");
 
-    const res = await fetch(
-      `https://jobdecoder.anubhavsamanta.tech/search/?keyword=${formattedQuery}`
-    );
-    const data = await res.json();
+    const data = await fetchSearchData(formattedQuery);
     setResults(data.data);
   }
 
