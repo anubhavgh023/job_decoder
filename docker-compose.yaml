@@ -8,6 +8,10 @@ services:
       - "8000:8000"
     volumes:
       - ./backend/db:/app/backend/db
+    # router traffic
+    labels:
+      - "traefik.http.routers.backend.rule=PathPrefix(`/api`)"   # Route traffic to /api to backend
+      - "traefik.http.services.backend.loadbalancer.server.port=8000"
     networks:
       - app-network
 
@@ -16,6 +20,28 @@ services:
     build: ./frontend
     ports:
       - "3000:3000"
+    labels:
+      - "traefik.http.routers.frontend.rule=PathPrefix(`/`)"   # Route all traffic to frontend
+      - "traefik.http.services.frontend.loadbalancer.server.port=3000"
+    networks:
+      - app-network
+
+  # traefik reverse proxy
+  reverse-proxy:
+    # The official v3 Traefik docker image
+    image: traefik:v3.1
+    # Enables the web UI and tells Traefik to listen to docker
+    command: 
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entryPoints.web.address=:80"
+    ports:
+      - "80:80" # The HTTP port
+      - "8080:8080" # The Web UI dashboard
+    volumes:
+      # So that Traefik can listen to the Docker events
+      - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - app-network
     
