@@ -12,7 +12,6 @@
     "@amcharts/amcharts5": "^5.10.4",
     "@amcharts/amcharts5-fonts": "^5.0.1",
     "@amcharts/amcharts5-geodata": "^5.1.4",
-    "axios": "^1.7.5",
     "chart.js": "^4.4.4",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
