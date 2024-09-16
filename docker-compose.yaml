@@ -4,24 +4,22 @@ services:
   # Fastapi backend
   backend:
     build: ./backend
-    ports:
-      - "8000:8000"
     volumes:
       - ./backend/db:/app/backend/db
     # router traffic
     labels:
-      - "traefik.http.routers.backend.rule=PathPrefix(`/api`)"   # Route traffic to /api to backend
-      - "traefik.http.services.backend.loadbalancer.server.port=8000"
+      - "traefik.enable=true"
+      - "traefik.http.routers.backend.rule=PathPrefix(`/api`)" # Route traffic with /api to backend  
+      - "traefik.http.services.backend.loadbalancer.server.port=8000" # Interval service port
     networks:
       - app-network
 
   # Next.js frontend
   frontend:
     build: ./frontend
-    ports:
-      - "3000:3000"
     labels:
-      - "traefik.http.routers.frontend.rule=PathPrefix(`/`)"   # Route all traffic to frontend
+      - "traefik.enable=true"
+      - "traefik.http.routers.frontend.rule=Host(`jobdecoder.anubhavsamanta.tech`)"  # Route based on host domain
       - "traefik.http.services.frontend.loadbalancer.server.port=3000"
     networks:
       - app-network
@@ -43,8 +41,8 @@ services:
       - "--certificatesresolvers.myresolver.acme.email=asamanta2123@gmail.com"
       - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
     ports:
-      - "80:80"
-      - "443:443" # The HTTP port
+      - "80:80" # HTTP port
+      - "443:443" # The HTTPs port
       - "8080:8080" # The Web UI dashboard
     volumes:
       - "./letsencrypt:/letsencrypt"
