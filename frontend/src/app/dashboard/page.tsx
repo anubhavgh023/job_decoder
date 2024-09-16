@@ -7,7 +7,7 @@ import { DashboardData } from "@/types/types";
 import Link from "next/link";
 
 async function fetchDashboardData(): Promise<DashboardData> {
-  const res = await fetch("http://localhost:8000/dashboard", {
+  const res = await fetch("http://backend:8000/dashboard", {
     cache: "no-store",
   });
   return res.json();

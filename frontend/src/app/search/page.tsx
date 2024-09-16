@@ -12,7 +12,7 @@ export default function Search() {
     const formattedQuery = query.split(" ").join(",");
 
     const res = await fetch(
-      `http://localhost:8000/search/?keyword=${formattedQuery}`
+      `http://backend:8000/search/?keyword=${formattedQuery}`
     );
     const data = await res.json();
     setResults(data.data);
